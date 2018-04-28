@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body ng-app="TodoApp" ng-controller="TodoController as vm">
+  <input type="text" ng-model="vm.newTask.task" />
+  <button ng-click="vm.addTask()">Add Todo</button>
 
+  <ul>
+    <li ng-repeat="task in vm.tasks" ng-class="{test: task.completed == true}" >
+      <input type="text" ng-model="task.task">
+      <button ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
+      <button ng-click="vm.deleteTask(task)">DELETE</button>
+    </li>
+  </ul>
 </body>
 </html>

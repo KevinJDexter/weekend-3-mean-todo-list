@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  Tasks.create(res.body)
+  Tasks.create(req.body)
     .then((response) => {
       res.sendStatus(201);
     })

@@ -2,12 +2,12 @@ console.log('client.js');
 
 var app = angular.module('TodoApp', []);
 
-app.controller('TodoController', function() {
+app.controller('TodoController', ['$http', function($http) {
   console.log('angular.js');
 
   self = this;
 
-  self.newTask = {};
+  self.newTask = { completed: false };
   self.tasks = [];
 
   self.getTasks = function() {
@@ -31,6 +31,7 @@ app.controller('TodoController', function() {
     })
       .then(function (response) {
         self.getTasks();
+        self.newTask = { completed: false }
       })
       .catch(function (error) {
         console.log('error with /task POST', error);
@@ -38,6 +39,7 @@ app.controller('TodoController', function() {
   }
 
   self.completeTask = function(task) {
+    task.completed = true;
     $http({
       method: 'PUT',
       url: '/task',
@@ -51,7 +53,7 @@ app.controller('TodoController', function() {
       })
   }
 
-  self.deleteTast = function(tast) {
+  self.deleteTask = function(task) {
     $http({
       method: 'DELETE',
       url: '/task',
@@ -67,4 +69,4 @@ app.controller('TodoController', function() {
 
   self.getTasks();
 
-})
+}])
