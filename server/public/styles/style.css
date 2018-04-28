@@ -1,8 +1,26 @@
 li {
   background-color: lightgrey;
   padding: 2px;
+  list-style: none;
+  border: 1px black solid;
 }
 
-.test {
+ul {
+  padding-left: 0px;
+}
+
+.completed {
   background-color: lightgreen;
+}
+
+.definedTask {
+  width: 50%;
+}
+
+body {
+  margin: 40px 10px;
+}
+
+#inDiv {
+  margin: 10px;
 }
