@@ -17,6 +17,10 @@ ul {
   width: 50%;
 }
 
+.noEdit {
+  background-color: rgb(194, 189, 189);
+}
+
 body {
   margin: 40px 10px;
 }
@@ -31,7 +35,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   border: 10px black solid;
-  background-color: #fc332dc4;
+  background-color: #fc332d;
   padding: 10px;
   text-align: center;
 }
