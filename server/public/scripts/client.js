@@ -47,17 +47,7 @@ app.controller('TodoController', ['$http', function($http) {
   // Changes the tasks completed value to true and updates it in the database
   self.completeTask = function(task) {
     task.completed = true;
-    $http({
-      method: 'PUT',
-      url: '/task',
-      data: task
-    })
-      .then(function (response) {
-        self.getTasks();
-      })
-      .catch(function(error) {
-        console.log('error with /task PUT', error);
-      })
+    self.updateTask(task);
   }
 
   // Deletes a task permanently from both the client and database
@@ -74,6 +64,21 @@ app.controller('TodoController', ['$http', function($http) {
       })
       .catch(function(error) {
         console.log('error with /task DELETE', error);
+      })
+  }
+
+  // Updates task with new info
+  self.updateTask = function(task) {
+    $http({
+      method: 'PUT', 
+      url: '/task',
+      data: task
+    })
+      .then(function(response) {
+        self.getTasks();
+      })
+      .catch(function (error) {
+        console.log('error with /task PUT', error);
       })
   }
 
