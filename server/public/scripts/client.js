@@ -10,6 +10,8 @@ app.controller('TodoController', ['$http', function($http) {
   self.newTask = { completed: false };
   self.tasks = [];
 
+
+  // Populates our client side tasks with all tasks stored in our database
   self.getTasks = function() {
     $http({
       method: 'GET',
@@ -23,6 +25,7 @@ app.controller('TodoController', ['$http', function($http) {
       })
   }
 
+  // Sends our new task to be added to the database
   self.addTask = function() {
     $http({
       method: 'POST', 
@@ -38,6 +41,7 @@ app.controller('TodoController', ['$http', function($http) {
       })
   }
 
+  // Changes the tasks completed value to true and updates it in the database
   self.completeTask = function(task) {
     task.completed = true;
     $http({
@@ -53,6 +57,7 @@ app.controller('TodoController', ['$http', function($http) {
       })
   }
 
+  // Deletes a task permanently from both the client and database
   self.deleteTask = function(task) {
     $http({
       method: 'DELETE',

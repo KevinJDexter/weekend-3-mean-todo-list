@@ -1,6 +1,7 @@
 const Tasks = require('../models/task.schema');
 const router = require('express').Router();
 
+// Gets all tasks from the Database
 router.get('/', (req, res) => {
   Tasks.find({})
     .then((response) => {
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// Creates a new task in the database
 router.post('/', (req, res) => {
   Tasks.create(req.body)
     .then((response) => {
@@ -23,6 +25,7 @@ router.post('/', (req, res) => {
     })
 })
 
+// Updates an existing class in the database
 router.put('/', (req, res) => {
   Tasks.findByIdAndUpdate(req.body._id, req.body)
     .then((response => {
@@ -34,6 +37,7 @@ router.put('/', (req, res) => {
     })
 })
 
+// Deletes an existing class from the database
 router.delete('/', (req, res) => {
   Tasks.findByIdAndRemove(req.query._id)
     .then((response => {
