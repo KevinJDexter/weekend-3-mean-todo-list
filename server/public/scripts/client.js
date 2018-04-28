@@ -2,12 +2,12 @@ console.log('client.js');
 
 var app = angular.module('TodoApp', []);
 
-app.controller('TodoController', ['$http', function($http) {
+app.controller('TodoController', ['$http', function ($http) {
   console.log('angular.js');
 
   self = this;
 
-  self.newTask = { completed: false };
+  self.newTask = { task: '', category: '', completed: false };
   self.tasks = [];
 
   self.taskToDelete = {};
@@ -18,7 +18,7 @@ app.controller('TodoController', ['$http', function($http) {
 
 
   // Populates our client side tasks with all tasks stored in our database
-  self.getTasks = function() {
+  self.getTasks = function () {
     console.log(self.toSearch);
     $http({
       method: 'GET',
@@ -28,35 +28,39 @@ app.controller('TodoController', ['$http', function($http) {
       .then(function (response) {
         self.tasks = response.data;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('error with /task GET:', error);
       })
   }
 
   // Sends our new task to be added to the database
-  self.addTask = function() {
-    $http({
-      method: 'POST', 
-      url: '/task',
-      data: self.newTask
-    })
-      .then(function (response) {
-        self.getTasks();
-        self.newTask = { completed: false }
+  self.addTask = function () {
+    if (self.newTask.task == '' || self.newTask.category == '') {
+      alert('You Must Define a Task and Category!!!')
+    } else {
+      $http({
+        method: 'POST',
+        url: '/task',
+        data: self.newTask
       })
-      .catch(function (error) {
-        console.log('error with /task POST', error);
-      })
+        .then(function (response) {
+          self.getTasks();
+          self.newTask = { task: '', category: '', completed: false }
+        })
+        .catch(function (error) {
+          console.log('error with /task POST', error);
+        })
+    }
   }
 
   // Changes the tasks completed value to true and updates it in the database
-  self.completeTask = function(task) {
+  self.completeTask = function (task) {
     task.completed = true;
     self.updateTask(task);
   }
 
   // Deletes a task permanently from both the client and database
-  self.deleteTask = function() {
+  self.deleteTask = function () {
     $http({
       method: 'DELETE',
       url: '/task',
@@ -67,19 +71,19 @@ app.controller('TodoController', ['$http', function($http) {
         self.taskToDelete = {};
         self.deleteTaskExists = false;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log('error with /task DELETE', error);
       })
   }
 
   // Updates task with new info
-  self.updateTask = function(task) {
+  self.updateTask = function (task) {
     $http({
-      method: 'PUT', 
+      method: 'PUT',
       url: '/task',
       data: task
     })
-      .then(function(response) {
+      .then(function (response) {
         self.getTasks();
       })
       .catch(function (error) {
