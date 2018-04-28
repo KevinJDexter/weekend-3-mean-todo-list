@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema ({
   task: {type: String, required: true},
+  category: {type: String, required: true},
   completed: {type: Boolean, required: true}
 })
 

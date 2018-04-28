@@ -18,13 +18,16 @@
     <h1>To Do List</h1>
   </header>
   <form class="inDiv" ng-submit>
-    <input type="text" ng-model="vm.newTask.task" />
+    <p>Task: <input type="text" ng-model="vm.newTask.task" placeholder="Clean the kitchen"/></p>
+    <p>Category: <input type="text" ng-model="vm.newTask.category" placeholder="Housework"/></p>
     <button ng-click="vm.addTask()">Add Task</button>
   </form>
   <br>
   <ul>
-    <li class="col-md-4" ng-repeat="task in vm.tasks" ng-class="{completed: task.completed}">
+    <!-- <li class="searchbar col-md-12">Search by Category: <input type="text" /></li> -->
+    <li class="col-md-3" ng-repeat="task in vm.tasks" ng-class="{completed: task.completed}">
       <input class="definedTask" ng-class="{noEdit: task.completed}" type="text" ng-model="task.task" ng-readonly="task.completed" />
+      <p>Category: {{task.category}}</p>
       <button ng-click="vm.updateTask(task)">Update</button>
       <button ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
       <button ng-click="vm.setToDelete(task)">X</button>
