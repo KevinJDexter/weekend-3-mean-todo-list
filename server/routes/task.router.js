@@ -3,7 +3,7 @@ const router = require('express').Router();
 
 // Gets all tasks from the Database
 router.get('/', (req, res) => {
-  Tasks.find(req.body)
+  Tasks.find({})
     .then((response) => {
       res.send(response);
     })

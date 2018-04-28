@@ -23,14 +23,16 @@
     <button ng-click="vm.addTask()">Add Task</button>
   </form>
   <br>
+  <div class="searchbar"><label>Search by Task: <input type="text" ng-model="vm.taskToSearch" /></label></div>
+  <div class="searchbar"><label>Search by Category: <input type="text" ng-model="vm.categoryToSearch" /></label></div>
   <ul>
-    <!-- <li class="searchbar col-md-12">Search by Category: <input type="text" /></li> -->
-    <li class="col-md-3" ng-repeat="task in vm.tasks" ng-class="{completed: task.completed}">
+    <li class="col-md-3" ng-repeat="task in vm.tasks | filter: {task: vm.taskToSearch, category: vm.categoryToSearch} | orderBy: 'completed'" ng-class="{completed: task.completed}">
       <input class="definedTask" ng-class="{noEdit: task.completed}" type="text" ng-model="task.task" ng-readonly="task.completed" />
-      <p>Category: {{task.category}}</p>
-      <button ng-click="vm.updateTask(task)">Update</button>
+      <label>Category: {{task.category}}</label>
+      </br>
+      <button ng-hide="task.completed" ng-click="vm.updateTask(task)">Update</button>
       <button ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
-      <button ng-click="vm.setToDelete(task)">X</button>
+      <button ng-click="vm.setToDelete(task)">DELETE</button>
     </li>
   </ul>
 

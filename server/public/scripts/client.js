@@ -13,12 +13,17 @@ app.controller('TodoController', ['$http', function($http) {
   self.taskToDelete = {};
   self.deleteTaskExists = false;
 
+  self.taskToSearch = '';
+  self.categoryToSearch = '';
+
 
   // Populates our client side tasks with all tasks stored in our database
   self.getTasks = function() {
+    console.log(self.toSearch);
     $http({
       method: 'GET',
-      url: '/task'
+      url: '/task',
+      params: { test: self.toSearch }
     })
       .then(function (response) {
         self.tasks = response.data;
