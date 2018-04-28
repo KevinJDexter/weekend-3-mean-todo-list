@@ -10,6 +10,9 @@ app.controller('TodoController', ['$http', function($http) {
   self.newTask = { completed: false };
   self.tasks = [];
 
+  self.taskToDelete = {};
+  self.deleteTaskExists = false;
+
 
   // Populates our client side tasks with all tasks stored in our database
   self.getTasks = function() {
@@ -58,18 +61,30 @@ app.controller('TodoController', ['$http', function($http) {
   }
 
   // Deletes a task permanently from both the client and database
-  self.deleteTask = function(task) {
+  self.deleteTask = function() {
     $http({
       method: 'DELETE',
       url: '/task',
-      params: task
+      params: self.taskToDelete
     })
       .then(function (response) {
         self.getTasks();
+        self.taskToDelete = {};
+        self.deleteTaskExists = false;
       })
       .catch(function(error) {
         console.log('error with /task DELETE', error);
       })
+  }
+
+  self.setToDelete = function (task) {
+    self.taskToDelete = task;
+    self.deleteTaskExists = true;
+  }
+
+  self.cancelDelete = function () {
+    self.taskToDelete = {};
+    self.deleteTaskExists = false;
   }
 
   self.getTasks();

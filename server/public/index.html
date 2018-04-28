@@ -26,9 +26,20 @@
       <input class="definedTask" type="text" ng-model="task.task" />
       <button ng-click="vm.updateTask(task)">Update</button>
       <button ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
-      <button ng-click="vm.deleteTask(task)">X</button>
+      <button ng-click="vm.setToDelete(task)">X</button>
     </li>
   </ul>
+
+  <div class="deletePopup" ng-show="vm.deleteTaskExists">
+    <p class="" id="deleteWarning">Are you sure you wish to delete?</p>
+    <p class="deleteTask">{{vm.taskToDelete.task}}</p>
+    <div class="col-md-6">
+      <button class="deleteButton" ng-click="vm.deleteTask()">Yes</button>
+    </div>
+    <div class="col-md-6">
+      <button class="deleteButton" ng-click="vm.cancelDelete()">No</button>
+    </div>
+  </div>
 </body>
 
 </html>

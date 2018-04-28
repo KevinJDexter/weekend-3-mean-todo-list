@@ -24,3 +24,35 @@ body {
 #inDiv {
   margin: 10px;
 }
+
+.deletePopup {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 10px black solid;
+  background-color: #fc332dc4;
+  padding: 10px;
+  text-align: center;
+}
+
+#deleteWarning {
+  font-size: 40px;
+}
+
+.deleteButton {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 3em;
+  width: 6em;
+}
+
+.inPopup {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+.deleteTask {
+  border: 1px black solid;
+}
