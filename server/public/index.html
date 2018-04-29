@@ -17,22 +17,40 @@
   <header>
     <h1>To Do List</h1>
   </header>
-  <form class="inDiv" ng-submit>
-    <p>Task: <input type="text" ng-model="vm.newTask.task" placeholder="Clean the kitchen"/></p>
-    <p>Category: <input type="text" ng-model="vm.newTask.category" placeholder="Housework"/></p>
+  <form class="inForm" ng-submit>
+    <p>Task:
+      <input type="text" ng-model="vm.newTask.task" placeholder="Clean the kitchen" />
+    </p>
+    <p>Category:
+      <input type="text" ng-model="vm.newTask.category" placeholder="Housework" />
+    </p>
     <button ng-click="vm.addTask()">Add Task</button>
   </form>
   <br>
-  <div class="searchbar"><label>Search by Task: <input type="text" ng-model="vm.taskToSearch" /></label></div>
-  <div class="searchbar"><label>Search by Category: <input type="text" ng-model="vm.categoryToSearch" /></label></div>
+  <div>
+    <div id="firstSearch" class="searchbar col-md-6">
+      <label>Search by Task:
+        <input class="pull-right" type="text" ng-model="vm.taskToSearch" placeholder="Search task..." />
+      </label>
+    </div>
+    <div class="searchbar col-md-6">
+      <label>Search by Category:
+        <input type="text" ng-model="vm.categoryToSearch" placeholder="Search category..."/>
+      </label>
+    </div>
+  </div>
   <ul>
-    <li class="col-md-3" ng-repeat="task in vm.tasks | filter: {task: vm.taskToSearch, category: vm.categoryToSearch} | orderBy: 'completed'" ng-class="{completed: task.completed}">
-      <input class="definedTask" ng-class="{noEdit: task.completed}" type="text" ng-model="task.task" ng-readonly="task.completed" />
+    <li class="col-md-3" ng-repeat="task in vm.tasks | filter: {task: vm.taskToSearch, category: vm.categoryToSearch} | orderBy: 'completed'"
+      ng-class="{completed: task.completed}">
+      <input class="definedTask" ng-class="{noEdit: task.completed}" type="text" ng-model="task.task" ng-readonly="task.completed"
+      />
       <label>Category: {{task.category}}</label>
       </br>
-      <button ng-hide="task.completed" ng-click="vm.updateTask(task)">Update</button>
-      <button ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
-      <button ng-click="vm.setToDelete(task)">DELETE</button>
+      <div>
+        <button class="col-md-3 space-buttons" ng-hide="task.completed" ng-click="vm.updateTask(task)">Update</button>
+        <button class="col-md-3 space-buttons" ng-hide="task.completed" ng-click="vm.completeTask(task)">Complete</button>
+        <button class="col-md-3 space-buttons" ng-click="vm.setToDelete(task)">DELETE</button>
+      </div>
     </li>
   </ul>
 

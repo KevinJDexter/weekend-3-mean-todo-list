@@ -9,6 +9,10 @@ ul {
   padding-left: 0px;
 }
 
+body {
+  background-color: yellowgreen;
+}
+
 .completed {
   background-color: lightgreen;
 }
@@ -21,12 +25,10 @@ ul {
   background-color: rgb(194, 189, 189);
 }
 
-body {
-  margin: 40px 10px;
-}
-
-#inDiv {
-  margin: 10px;
+.inForm {
+  text-align: center;
+  background-color: turquoise;
+  padding: 10px;
 }
 
 .deletePopup {
@@ -59,4 +61,19 @@ body {
 
 .deleteTask {
   border: 1px black solid;
+}
+
+.space-buttons {
+  margin-left: 25px;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background-color: teal;
+  padding: 20px;
+}
+
+#firstSearch {
+  text-align: right;
 }
