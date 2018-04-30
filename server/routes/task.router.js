@@ -28,9 +28,9 @@ router.post('/', (req, res) => {
 // Updates an existing class in the database
 router.put('/', (req, res) => {
   Tasks.findByIdAndUpdate(req.body._id, req.body)
-    .then((response => {
+    .then((response) => {
       res.sendStatus(202);
-    }))
+    })
     .catch((error) => {
       console.log('error in /task PUT:', error);
       res.sendStatus(500);
