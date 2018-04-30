@@ -40,9 +40,9 @@ router.put('/', (req, res) => {
 // Deletes an existing class from the database
 router.delete('/', (req, res) => {
   Tasks.findByIdAndRemove(req.query._id)
-    .then((response => {
+    .then((response) => {
       res.sendStatus(200);
-    }))
+    })
     .catch((error) => {
       console.log('error in /task DELETE:', error);
       res.sendStatus(500);
