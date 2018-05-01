@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const databaseUrl = 'mongodb://localhost:27017/todo';
+const databaseUrl = process.env.MONGODB_URI ||'mongodb://localhost:27017/todo';
 mongoose.connect(databaseUrl);
 
 mongoose.connection.on('connected', () => {
